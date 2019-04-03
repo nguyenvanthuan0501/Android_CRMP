@@ -5,7 +5,7 @@ class CreateCrimes < ActiveRecord::Migration[5.2]
       t.string :title
       t.string :description
       t.datetime :time
-      t.belongs_to :users, index: true
+      t.belongs_to :user, index: true
       t.belongs_to :category, index: true
 
       t.timestamps
