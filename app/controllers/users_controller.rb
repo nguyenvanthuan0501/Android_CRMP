@@ -27,22 +27,16 @@ class UsersController < ApplicationController
   def login
     @user = User.find_by(email: params[:email].downcase)
     if @user && @user.authenticate(params[:password])
-        result = Array.new
-        tmp = Hash.new
-        tmp[:id] = @user.id
-        tmp[:fullname] = @user.fullname
-        tmp[:email] = @user.email
-        tmp[:phone_number] = @user.phone_number
-        tmp[:address] = @user.address
-        tmp[:id_card_number]= @user.id_card_number 
-        tmp[:message] = "success"
-        result.push(tmp)
+       response = {
+         user: @user,
+         message: "success"
+       }
     else
       response = {
         message: "login not success"
       }
     end
-    render json: result
+    render json: response
   end
 
   #GET "/users/:id"
