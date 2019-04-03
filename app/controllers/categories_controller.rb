@@ -30,8 +30,12 @@ class CategoriesController < ApplicationController
 
   #PUT "categories/:id"
   def update
+    protected_params = Hash.new
+    category_params.each do |attr_name, attr_value|
+      protected_params[attr_name.to_sym] = attr_value unless attr_value.nil?
+    end
     @category = Category.find(params[:id])
-    @category.update_attributes(category_params)
+    @category.update_attributes(protected_params)
     response = {
       category: @category,
       message: "Update success"
