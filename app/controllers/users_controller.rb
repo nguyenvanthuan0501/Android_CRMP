@@ -56,16 +56,23 @@ class UsersController < ApplicationController
 
    #PUT "users/:id"
   def update
-    @user = User.find(params[:id])
-    @user.update_attributes(user_params)
+    protected_params = Hash.new
+    profile_params.each do |attr_name, attr_value|
+      protected_params[attr_name.to_sym] = attr_value unless attr_value.nil?
+    end
+    @request_user.update_attributes(protected_params)
     response = {
-        user: @user,
+        user: @request_user,
         message: "Update success"
     }
     render json: response
   end
 
   private 
+
+  def profile_params
+    params.permit(:password, :password_confirmation, :fullname, :phone_number, :address)
+  end
 
   def user_params
     params.permit(:password, :password_confirmation, :email, :fullname, :phone_number, :address)
