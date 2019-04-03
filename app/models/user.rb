@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  has_many :crimes
   before_save { self.email = email.downcase }
   validates_presence_of :fullname, :password, :email, :phone_number, :address, :password_confirmation
   validates_uniqueness_of :email
