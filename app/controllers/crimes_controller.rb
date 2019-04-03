@@ -1,5 +1,6 @@
 class CrimesController < ApplicationController
   before_action :get_crime, only: [:show, :update, :destroy]
+  before_action :get_category, only: [:get_report_by_category]
 
   #GET "/crimes"
   def index
@@ -53,6 +54,11 @@ class CrimesController < ApplicationController
     end 
   end
 
+  #GET "/category/:category_id/crimes"
+  def get_report_by_category
+    render json: @category.crimes
+  end
+
   private 
 
   def get_crime
@@ -61,5 +67,9 @@ class CrimesController < ApplicationController
 
   def crime_params
     params.permit(:category_id, :area, :title, :description, :time, :user_id)
+  end
+
+  def get_category
+    @category = Category.find(params[:category_id])
   end
 end
