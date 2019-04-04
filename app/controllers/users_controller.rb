@@ -9,7 +9,9 @@ class UsersController < ApplicationController
 
    #POST "/users"
   def create
-    @user = User.create!(user_params)
+    data = user_params
+    # data[:role_id] = 2
+    @user = User.create!(data)
     if @user.save
       response = {
         user: @user,
@@ -35,6 +37,7 @@ class UsersController < ApplicationController
       tmp[:phone_number] = @user.phone_number
       tmp[:address] = @user.address
       tmp[:id_card_number]= @user.id_card_number 
+      tmp[:role_id] = @user.role_id
       tmp[:message] = "success"
       result.push(tmp)
     else
@@ -78,11 +81,11 @@ class UsersController < ApplicationController
   private 
 
   def profile_params
-    params.permit(:password, :password_confirmation, :fullname, :phone_number, :address)
+    params.permit(:password, :password_confirmation, :fullname, :phone_number, :address, :role_id)
   end
 
   def user_params
-    params.permit(:password, :password_confirmation, :email, :fullname, :phone_number, :address)
+    params.permit(:password, :password_confirmation, :email, :fullname, :phone_number, :address, :role_id)
   end
 
   # get request user
