@@ -34,12 +34,6 @@ ActiveRecord::Schema.define(version: 2019_04_04_075443) do
     t.index ["user_id"], name: "index_crimes_on_user_id"
   end
 
-  create_table "roles", force: :cascade do |t|
-    t.string "role_name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "missings", force: :cascade do |t|
     t.string "title"
     t.string "description"
@@ -48,6 +42,12 @@ ActiveRecord::Schema.define(version: 2019_04_04_075443) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_missings_on_user_id"
+  end
+
+  create_table "roles", force: :cascade do |t|
+    t.string "role_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
