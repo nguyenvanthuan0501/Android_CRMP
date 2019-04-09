@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   resources :hotlines
+  resources :commentcrimes
   resources :missings
   resources :crimes
   resources :categories

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_08_073557) do
+ActiveRecord::Schema.define(version: 2019_04_09_092503) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,6 +19,16 @@ ActiveRecord::Schema.define(version: 2019_04_08_073557) do
     t.string "name_category"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "commentcrimes", force: :cascade do |t|
+    t.string "content"
+    t.bigint "user_id"
+    t.bigint "crime_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["crime_id"], name: "index_commentcrimes_on_crime_id"
+    t.index ["user_id"], name: "index_commentcrimes_on_user_id"
   end
 
   create_table "crimes", force: :cascade do |t|
