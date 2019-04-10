@@ -45,7 +45,7 @@ class MissingsController < ApplicationController
 
   #DELETE "/missings/:id"
   def destroy
-    if @request_missing.destroy
+  if @request_missing.destroy
       render json: ({message: "success"}), status: :ok
     else
       render json: @missing.errors, status: :unprocessable_entity
