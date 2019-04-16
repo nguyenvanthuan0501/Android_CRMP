@@ -1,5 +1,6 @@
 class MissingsController < ApplicationController
   before_action :get_missing, only: [:show, :update, :destroy]
+  before_action :get_user, only: [:get_missing_by_user]
 
   #GET "/missings"
   def index
@@ -52,13 +53,22 @@ class MissingsController < ApplicationController
     end
   end
 
+  #GET users/:user_id/missings
+  def get_missing_by_user
+    render json: @user.missings
+  end
+
   private
 
   def get_missing
     @request_missing = Missing.find(params[:id])
   end
 
+  def get_user
+    @user = User.find(params[:user_id])
+  end
+
   def missing_params
-    params.permit(:title, :description, :phone_number, :user_id)
+    params.permit(:title, :description, :phone_number, :user_id, :image)
   end
 end
