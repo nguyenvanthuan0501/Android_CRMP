@@ -13,4 +13,6 @@ Rails.application.routes.draw do
   get '/category/:category_id/crimes', to: 'crimes#get_report_by_category'
 
   get '/users/:user_id/crimes', to: 'crimes#get_report_by_user'
+  get '/users/:user_id/missings', to: 'missings#get_missing_by_user'
+
 end
