@@ -1,6 +1,7 @@
 class CrimesController < ApplicationController
   before_action :get_crime, only: [:show, :update, :destroy]
   before_action :get_category, only: [:get_report_by_category]
+  before_action :get_user, only: [:get_report_by_user]
 
   #GET "/crimes"
   def index
@@ -59,6 +60,11 @@ class CrimesController < ApplicationController
     render json: @category.crimes
   end
 
+  #GET "/users/:user_id/crimes"
+  def get_report_by_user
+    render json: @user.crimes
+  end
+
   private 
 
   def get_crime
@@ -72,4 +78,9 @@ class CrimesController < ApplicationController
   def get_category
     @category = Category.find(params[:category_id])
   end
+  
+  def get_user
+    @user = User.find(params[:user_id])
+  end
+
 end
