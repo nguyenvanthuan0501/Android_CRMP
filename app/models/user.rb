@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  has_many :commentmissings
+  has_many :commentcrimes
   has_many :crimes
   belongs_to :role
   has_many :missings
