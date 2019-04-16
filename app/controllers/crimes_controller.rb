@@ -72,7 +72,7 @@ class CrimesController < ApplicationController
   end
 
   def crime_params
-    params.permit(:category_id, :area, :title, :description, :time, :user_id)
+    params.permit(:category_id, :area, :title, :description, :time, :user_id, :image)
   end
 
   def get_category
