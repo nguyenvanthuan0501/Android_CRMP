@@ -71,11 +71,7 @@ class UsersController < ApplicationController
       protected_params[attr_name.to_sym] = attr_value unless attr_value.nil?
     end
     @request_user.update_attributes(protected_params)
-    response = {
-        user: @request_user,
-        message: "Update success"
-    }
-    render json: response
+    render json: @request_user
   end
 
   private 
