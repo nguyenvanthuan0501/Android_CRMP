@@ -1,5 +1,6 @@
 class CommentcrimesController < ApplicationController
   before_action :get_comments, only: [:show, :update, :destroy]
+  before_action :get_crime, only: [:get_comments_by_crime]
 
   #GET "/commentcrimes"
   def index
@@ -52,6 +53,11 @@ class CommentcrimesController < ApplicationController
     end
   end
 
+  #GET "/crime/:crime_id/comments"
+  def get_comments_by_crime
+    render json: @crime.commentcrimes
+  end
+
   private 
 
   def get_comments
@@ -60,5 +66,9 @@ class CommentcrimesController < ApplicationController
 
   def commentcrime_params
     params.permit(:content, :crime_id, :user_id)
+  end
+
+  def get_crime
+    @crime = Crime.find(params[:crime_id])
   end
 end
