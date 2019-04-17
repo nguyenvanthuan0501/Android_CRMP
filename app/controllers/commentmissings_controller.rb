@@ -1,5 +1,6 @@
 class CommentmissingsController < ApplicationController
   before_action :get_comments, only: [:show, :update, :destroy]
+  before_action :get_missing, only: [:get_comment_by_missing]
 
   #GET "/commentmissings"
   def index
@@ -52,10 +53,19 @@ class CommentmissingsController < ApplicationController
     end
   end
 
+  #GET "missing/:missing_id/comments"
+  def get_comment_by_missing
+    render json: @missing.commentmissings
+  end
+
   private
 
   def get_comments
     @request_comments = Commentmissing.find(params[:id])
+  end
+
+  def get_missing
+    @missing = Missing.find(params[:missing_id])
   end
 
   def commentmissing_params
