@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :categories
   resources :users
   resources :roles
+  resources :complaintcategorys
 
   post '/login', to: 'users#login'
   get '/', to: 'application#home'
