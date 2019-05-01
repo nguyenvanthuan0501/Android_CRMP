@@ -5,14 +5,15 @@ class CommentmissingsController < ApplicationController
   #GET "/commentmissings"
   def index
     response = Array.new
-    tmp = Hash.new
     @comment_missing = Commentmissing.all
     @comment_missing.each do |comment|
-      tmp['id'] = comment.id
-      tmp['content'] = comment.content
-      tmp['missing_id'] = comment.missing_id
-      tmp['user_name'] = comment.user.fullname
-      tmp['created_at'] = comment.create_at
+      tmp = Hash.new
+      tmp[:id] = comment.id
+      tmp[:content] = comment.content
+      tmp[:missing_id] = comment.missing_id
+      tmp[:user_name] = comment.user.fullname
+      tmp[:user_id] = comment.user_id
+      tmp[:created_at] = comment.created_at
       response.push(tmp)
     end
     render json: response
@@ -66,13 +67,14 @@ class CommentmissingsController < ApplicationController
   #GET "missing/:missing_id/comments"
   def get_comment_by_missing
     response = Array.new
-    tmp = Hash.new
     @missing.commentmissings.each do |comment|
-      tmp['id'] = comment.id
-      tmp['content'] = comment.content
-      tmp['missing_id'] = comment.missing_id
-      tmp['user_name'] = comment.user.fullname
-      tmp['created_at'] = comment.created_at
+      tmp = Hash.new
+      tmp[:id] = comment.id
+      tmp[:content] = comment.content
+      tmp[:missing_id] = comment.missing_id
+      tmp[:user_name] = comment.user.fullname
+      tmp[:user_id] = comment.user_id
+      tmp[:created_at] = comment.created_at
       response.push(tmp)
     end
     render json: response
