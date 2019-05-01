@@ -7,6 +7,7 @@ class CommentmissingsController < ApplicationController
     response = Array.new
     @comment_missing = Commentmissing.all
     @comment_missing.each do |comment|
+<<<<<<< HEAD
       tmp = Hash.new
       tmp[:id] = comment.id
       tmp[:content] = comment.content
@@ -14,6 +15,14 @@ class CommentmissingsController < ApplicationController
       tmp[:user_name] = comment.user.fullname
       tmp[:user_id] = comment.user_id
       tmp[:created_at] = comment.created_at
+=======
+      tmp['id'] = comment.id
+      tmp['content'] = comment.content
+      tmp['missing_id'] = comment.missing_id
+      tmp['user_name'] = comment.user.fullname
+      tmp['user_id'] = comment.user_id
+      tmp['created_at'] = comment.created_at
+>>>>>>> d57f44a3b6e24a67b854ea22d9d3532074e43d4e
       response.push(tmp)
     end
     render json: response
@@ -68,6 +77,7 @@ class CommentmissingsController < ApplicationController
   def get_comment_by_missing
     response = Array.new
     @missing.commentmissings.each do |comment|
+<<<<<<< HEAD
       tmp = Hash.new
       tmp[:id] = comment.id
       tmp[:content] = comment.content
@@ -75,6 +85,14 @@ class CommentmissingsController < ApplicationController
       tmp[:user_name] = comment.user.fullname
       tmp[:user_id] = comment.user_id
       tmp[:created_at] = comment.created_at
+=======
+      tmp['id'] = comment.id
+      tmp['content'] = comment.content
+      tmp['missing_id'] = comment.missing_id
+      tmp['user_name'] = comment.user.fullname
+      tmp['user_id'] = comment.user_id
+      tmp['created_at'] = comment.created_at
+>>>>>>> d57f44a3b6e24a67b854ea22d9d3532074e43d4e
       response.push(tmp)
     end
     render json: response
