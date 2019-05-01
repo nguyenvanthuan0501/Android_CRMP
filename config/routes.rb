@@ -18,5 +18,6 @@ Rails.application.routes.draw do
   get '/users/:user_id/missings', to: 'missings#get_missing_by_user'
   get '/missing/:missing_id/comments', to: 'commentmissings#get_comment_by_missing'
   get '/crime/:crime_id/comments', to: 'commentcrimes#get_comments_by_crime'
+  delete '/crime/:crime_id/comments', to: 'commentcrimes#delete_comment_by_crime'
 
 end
