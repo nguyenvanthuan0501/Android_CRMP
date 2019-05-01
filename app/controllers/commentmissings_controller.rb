@@ -4,8 +4,18 @@ class CommentmissingsController < ApplicationController
 
   #GET "/commentmissings"
   def index
+    response = Array.new
+    tmp = Hash.new
     @comment_missing = Commentmissing.all
-    render json: @comment_missing
+    @comment_missing.each do |comment|
+      tmp['id'] = comment.id
+      tmp['content'] = comment.content
+      tmp['missing_id'] = comment.missing_id
+      tmp['user_name'] = comment.user.fullname
+      tmp['created_at'] = comment.create_at
+      response.push(tmp)
+    end
+    render json: response
   end
 
   #POST "/commentmissings"
@@ -55,7 +65,17 @@ class CommentmissingsController < ApplicationController
 
   #GET "missing/:missing_id/comments"
   def get_comment_by_missing
-    render json: @missing.commentmissings
+    response = Array.new
+    tmp = Hash.new
+    @missing.commentmissings.each do |comment|
+      tmp['id'] = comment.id
+      tmp['content'] = comment.content
+      tmp['missing_id'] = comment.missing_id
+      tmp['user_name'] = comment.user.fullname
+      tmp['created_at'] = comment.created_at
+      response.push(tmp)
+    end
+    render json: response
   end
 
   private
