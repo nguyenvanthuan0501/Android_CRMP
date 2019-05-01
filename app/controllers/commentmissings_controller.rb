@@ -12,7 +12,8 @@ class CommentmissingsController < ApplicationController
       tmp['content'] = comment.content
       tmp['missing_id'] = comment.missing_id
       tmp['user_name'] = comment.user.fullname
-      tmp['created_at'] = comment.create_at
+      tmp['user_id'] = comment.user_id
+      tmp['created_at'] = comment.created_at
       response.push(tmp)
     end
     render json: response
@@ -72,6 +73,7 @@ class CommentmissingsController < ApplicationController
       tmp['content'] = comment.content
       tmp['missing_id'] = comment.missing_id
       tmp['user_name'] = comment.user.fullname
+      tmp['user_id'] = comment.user_id
       tmp['created_at'] = comment.created_at
       response.push(tmp)
     end
