@@ -53,6 +53,14 @@ class CommentcrimesController < ApplicationController
     end
   end
 
+  def delete_comment_by_crime
+    @comment_by_crime = Commentcrime.where(crime_id: params[:crime_id])
+    @comment_by_crime.each do |comment|
+      comment.destroy
+    end
+    render json: ({message: "success"}), status: :ok
+  end
+
   #GET "/crime/:crime_id/comments"
   def get_comments_by_crime
     render json: @crime.commentcrimes
