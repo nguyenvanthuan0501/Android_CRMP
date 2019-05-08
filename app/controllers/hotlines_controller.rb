@@ -55,7 +55,7 @@ class HotlinesController < ApplicationController
   #GET "hotline/:area"
   def get_hotline_by_area
     @area = params[:area].gsub('-',' ')
-    @hotline = Hotline.where("area LIKE :area", area: "%#{@area}%")
+    @hotline = Hotline.where("area LIKE :area", area: "%#{@area.titleize}%")
     render json: @hotline
   end
 
