@@ -65,6 +65,13 @@ class CrimesController < ApplicationController
     render json: @user.crimes
   end
 
+  #GET "/crimes/area/:area"
+  def get_crimes_by_area
+    @area = params[:area].gsub("-"," ")
+    @crimes = Crime.where("area LIKE :area", area: "%#{@area.titleize}%")
+    render json: @crimes
+  end
+
   private 
 
   def get_crime

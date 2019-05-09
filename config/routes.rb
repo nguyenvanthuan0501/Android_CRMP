@@ -20,5 +20,6 @@ Rails.application.routes.draw do
   get '/crime/:crime_id/comments', to: 'commentcrimes#get_comments_by_crime'
   delete '/crime/:crime_id/comments', to: 'commentcrimes#delete_comment_by_crime'
   get '/hotline/:area', to: 'hotlines#get_hotline_by_area'
+  get 'crimes/area/:area', to: 'crimes#get_crimes_by_area'
 
 end
