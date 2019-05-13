@@ -5,7 +5,7 @@ class CrimesController < ApplicationController
 
   #GET "/crimes"
   def index
-    @crime = Crime.all
+    @crime = Crime.all.order(id: :desc)
     render json: @crime
   end
 

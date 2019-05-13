@@ -4,7 +4,7 @@ class MissingsController < ApplicationController
 
   #GET "/missings"
   def index
-    @missing = Missing.all
+    @missing = Missing.all.order(id: :desc)
     render json: @missing
   end
 
