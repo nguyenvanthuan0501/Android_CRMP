@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   resources :roles
   resources :complaintcategorys
   resources :complaints
+  resources :reportcategories
+  resources :reports
 
   post '/login', to: 'users#login'
   get '/', to: 'application#home'
@@ -21,5 +23,7 @@ Rails.application.routes.draw do
   delete '/crime/:crime_id/comments', to: 'commentcrimes#delete_comment_by_crime'
   get '/hotline/:area', to: 'hotlines#get_hotline_by_area'
   get 'crimes/area/:area', to: 'crimes#get_crimes_by_area'
+  delete '/reports/post/:post_id', to: 'reports#destroy_by_post'
+  get '/reports/post/:post_id', to: 'reports#get_report_by_post'
 
 end

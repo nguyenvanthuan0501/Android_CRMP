@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_27_145522) do
+ActiveRecord::Schema.define(version: 2019_05_13_072348) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -89,6 +89,21 @@ ActiveRecord::Schema.define(version: 2019_04_27_145522) do
     t.datetime "updated_at", null: false
     t.string "image"
     t.index ["user_id"], name: "index_missings_on_user_id"
+  end
+
+  create_table "reportcategories", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "reports", force: :cascade do |t|
+    t.boolean "status"
+    t.integer "post_id"
+    t.bigint "reportcategory_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["reportcategory_id"], name: "index_reports_on_reportcategory_id"
   end
 
   create_table "roles", force: :cascade do |t|
