@@ -10,7 +10,9 @@ class MissingsController < ApplicationController
 
   #POST "/missings"
   def create
-    @missing = Missing.create!(missing_params)
+    data = missing_params
+    data[:report] = 0
+    @missing = Missing.create!(data)
     if @missing.save
       response = {
         missing: @missing,
@@ -69,6 +71,6 @@ class MissingsController < ApplicationController
   end
 
   def missing_params
-    params.permit(:title, :description, :phone_number, :user_id, :image)
+    params.permit(:title, :description, :phone_number, :user_id, :image, :report)
   end
 end

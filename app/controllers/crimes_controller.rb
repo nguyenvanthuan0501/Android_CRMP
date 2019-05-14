@@ -11,7 +11,9 @@ class CrimesController < ApplicationController
 
   #POST "/crimes"
   def create
-    @crime = Crime.create!(crime_params)
+    data = crime_params
+    data[:report] = 0
+    @crime = Crime.create!(data)
     if @crime.save
       response = {
         crime: @crime,
@@ -79,7 +81,7 @@ class CrimesController < ApplicationController
   end
 
   def crime_params
-    params.permit(:category_id, :area, :title, :description, :time, :user_id, :image)
+    params.permit(:category_id, :area, :title, :description, :time, :user_id, :image, :report)
   end
 
   def get_category

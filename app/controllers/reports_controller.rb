@@ -28,18 +28,10 @@ class ReportsController < ApplicationController
   def check_post(status)
     if status == 1
       @crime = Crime.find(report_params[:post_id])
-      if @crime["report"].nil?
-        @crime.update_attributes(report: 1)
-      else
-        @crime.update_attributes(report: @crime["report"] + 1)
-      end
+      @crime.update_attributes(report: @crime["report"] + 1)
     else
       @missing = Missing.find(report_params[:post_id])
-      if @missing["report"].nil?
-        @missing.update_attributes(report: 1)
-      else
-        @missing.update_attributes(report: @missing["report"] + 1)
-      end
+      @missing.update_attributes(report: @missing["report"] + 1)
     end
   end
 
