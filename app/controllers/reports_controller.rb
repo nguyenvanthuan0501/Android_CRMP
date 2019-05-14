@@ -11,6 +11,7 @@ class ReportsController < ApplicationController
   def create
     @report = Report.create!(report_params)
     if @report.save
+      check_post(report_params[:status])
       response = {
         report: @report,
         message: "success"
@@ -21,6 +22,25 @@ class ReportsController < ApplicationController
       }
     end
     render json: response 
+  end
+
+  #check status of report to increase report in crime or missing 
+  def check_post(status)
+    if status == 1
+      @crime = Crime.find(report_params[:post_id])
+      if @crime["report"].nil?
+        @crime.update_attributes(report: 1)
+      else
+        @crime.update_attributes(report: @crime["report"] + 1)
+      end
+    else
+      @missing = Missing.find(report_params[:post_id])
+      if @missing["report"].nil?
+        @missing.update_attributes(report: 1)
+      else
+        @missing.update_attributes(report: @missing["report"] + 1)
+      end
+    end
   end
 
   def destroy
